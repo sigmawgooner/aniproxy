@@ -1,0 +1,29 @@
+/* Browser-specific UI tweaks for Aniproxy look */
+
+/* keep the small animations but tone down colors */
+.hover-focus1:hover:not(.selectedTab){background-color:rgba(255,59,59,0.04) !important}
+.hover-focus2:hover:not(.selectedTab){background-color:rgba(255,59,59,0.03) !important}
+
+/* tab item look */
+header #tab-list .tab-item{background:transparent;border-left:4px solid transparent;padding-left:10px}
+header #tab-list .tab-item.selectedTab{border-left-color:var(--accent);background:linear-gradient(90deg, rgba(184,12,0,0.04), rgba(0,0,0,0.02))}
+
+/* tab frame visuals (where pages open) */
+#tab-view .tab-frame{
+  height:97%;width:98%;background:transparent;border-radius:12px;box-shadow:none;border:none;
+  backdrop-filter: blur(6px);
+}
+
+/* menu overlay */
+#menu-overlay .option{border:1px solid rgba(255,255,255,0.02);background:transparent}
+#menu-overlay .option:hover{background:linear-gradient(90deg, rgba(184,12,0,0.03), rgba(0,0,0,0.12))}
+
+/* small-screen overlay and accessibility text */
+#small-screen-overlay p{margin:0 auto;width:80%;font-size:18px;color:#fff}
+
+/* ensure icons remain visible against dark bg */
+.icon{color:var(--muted);font-size:1.1rem}
+.icon:hover{color:var(--accent-2)}
+
+/* keep the tab list scroll comfortable */
+header #tab-list{padding-bottom:24px}
