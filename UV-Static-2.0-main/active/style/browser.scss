@@ -1,0 +1,53 @@
+// ===========================================================
+// Browser visuals for Aniproxy
+// ===========================================================
+
+header {
+  #tab-list {
+    .tab-item {
+      background: transparent;
+      border-left: 4px solid transparent;
+      padding-left: 10px;
+
+      &.selectedTab {
+        border-left-color: $accent;
+        background: linear-gradient(90deg, rgba(184,12,0,0.04), rgba(0,0,0,0.02));
+      }
+    }
+  }
+}
+
+#tab-view .tab-frame {
+  height: 97%;
+  width: 98%;
+  background: transparent;
+  border-radius: 12px;
+  box-shadow: none;
+  border: none;
+  backdrop-filter: blur(6px);
+}
+
+#menu-overlay .option {
+  border: 1px solid rgba(255,255,255,0.02);
+  background: transparent;
+
+  &:hover {
+    background: linear-gradient(90deg, rgba(184,12,0,0.03), rgba(0,0,0,0.12));
+  }
+}
+
+.icon {
+  color: $muted;
+  font-size: 1.1rem;
+
+  &:hover {
+    color: $accent-2;
+  }
+}
+
+#small-screen-overlay p {
+  margin: 0 auto;
+  width: 80%;
+  font-size: 18px;
+  color: #fff;
+}

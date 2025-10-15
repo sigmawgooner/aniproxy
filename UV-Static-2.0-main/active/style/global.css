@@ -1,0 +1,158 @@
+/* Aniproxy global visual theme (dark red / black)
+   Visual changes only; JS and markup untouched.
+*/
+
+/* Palette variables */
+:root{
+  --bg-900: #040202;
+  --bg-800: #0b0606;
+  --panel: rgba(20,10,10,0.6);
+  --accent: #b80c00;      /* strong red accent */
+  --accent-2: #ff3b3b;    /* brighter highlight */
+  --muted: #cfc7c7;
+  --glass: rgba(255,255,255,0.03);
+  --glow: 0 6px 28px rgba(184,12,0,0.18);
+  --mono: "Inter", "DM Sans", sans-serif;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  padding:0;
+  background: radial-gradient(1200px 700px at 20% 10%, rgba(184,12,0,0.06), transparent 6%),
+              linear-gradient(180deg,var(--bg-900), var(--bg-800));
+  color:var(--muted);
+  font-family:var(--mono);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow:hidden;
+}
+
+/* Keep small-screen overlay behavior */
+#small-screen-overlay{
+  display:none;
+  position:fixed;z-index:9999;
+  justify-content:center;align-items:center;
+  top:0;left:0;width:100%;height:100%;
+  background:rgba(0,0,0,0.9);color:#fff;text-align:center;
+}
+@media(max-width:600px){
+  #small-screen-overlay{display:flex}
+}
+
+/* Sidebar tweaks */
+.sidebar-container{
+  display:flex;justify-content:center;align-items:center;
+  width:22vw;height:100vh;overflow-y:auto;overflow-x:hidden;
+  position:fixed;left:0;top:0;padding-top:18px;
+  background:linear-gradient(180deg, rgba(0,0,0,0.45), rgba(10,5,5,0.25));
+  border-right:1px solid rgba(255,255,255,0.03);
+  z-index:60;
+}
+
+/* header inside sidebar */
+.sidebar-container header{
+  width:92%;height:96vh;margin-left:8px;
+  display:flex;flex-direction:column;align-items:center;gap:12px;
+  padding-top:6px;background:transparent;border-radius:12px;
+}
+
+/* top controls */
+.page-data{width:100%;padding:6px 0}
+#controls{display:flex;justify-content:space-between;align-items:center;width:100%}
+#controls button{
+  background:transparent;border:none;color:var(--muted);cursor:pointer;padding:6px;
+  display:flex;align-items:center;gap:6px;border-radius:8px;
+}
+#controls button:hover{background:rgba(255,255,255,0.02);color:var(--accent-2)}
+#controls .tooltip{display:none}
+
+/* url/form */
+#url-form{width:100%;padding:8px 0}
+#url-input{
+  width:100%;padding:10px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);
+  background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+  color:var(--muted);outline:none;font-size:0.95rem;
+}
+#new-tab{width:100%;margin-top:6px;padding:9px;border-radius:10px;background:var(--panel);border:1px solid rgba(255,255,255,0.03)}
+#new-tab span{font-weight:600}
+
+/* tab list */
+#tab-list{width:100%;height:66vh;overflow:auto;padding-top:8px}
+header #tab-list .tab-item{
+  width:96%;padding:10px;margin:6px auto;border-radius:8px;background:transparent;
+  display:flex;align-items:center;gap:10px;color:var(--muted);cursor:pointer;border:1px solid rgba(255,255,255,0.02);
+}
+header #tab-list .tab-item.selectedTab{background:linear-gradient(90deg, rgba(184,12,0,0.06), transparent);border-color:rgba(184,12,0,0.12)}
+
+/* menu overlay */
+#menu-overlay{position:fixed;top:48px;left:0;width:calc(22vw + 14px);height:calc(100% - 48px);background:rgba(0,0,0,0.85);transform:translateX(-105%);transition:.18s ease;z-index:80;padding:18px}
+#menu-overlay.active{transform:translateX(0)}
+.option{padding:12px;border-radius:8px;margin-bottom:8px;background:transparent;border:1px solid rgba(255,255,255,0.02)}
+.option:hover{background:linear-gradient(90deg, rgba(184,12,0,0.03), rgba(0,0,0,0.12))}
+
+/* main tab view — this is where the central image sits */
+#tab-view{
+  position:fixed;right:0;top:0;left:22vw;height:100vh;padding:36px;display:flex;justify-content:center;align-items:center;
+  z-index:10;transition:all .2s ease;
+}
+
+/* central container */
+#aniproxy-center{
+  width:100%;max-width:1100px;height:calc(100vh - 120px);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;
+  pointer-events:none; /* let controls overlay be clickable */
+}
+
+/* image wrap: circular, glow, centered */
+#center-image-wrap{
+  width:min(68vmin,720px);height:min(68vmin,720px);
+  border-radius:16px;overflow:hidden;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(180deg, rgba(0,0,0,0.45), rgba(20,5,5,0.35));
+  box-shadow: var(--glow);border:1px solid rgba(255,255,255,0.03);pointer-events:auto;
+  position:relative;
+  transform:translateZ(0);
+}
+
+/* center image filled and responsive */
+#center-image{
+  max-width:100%;max-height:100%;display:block;object-fit:cover;width:100%;height:100%;
+  filter:grayscale(0.03) contrast(1.03) saturate(1.05);
+}
+
+/* brand mark below center image */
+#aniproxy-mark{pointer-events:none;text-align:center;margin-top:6px}
+#aniproxy-mark h1{margin:0;font-size:2.4rem;color:var(--accent-2);letter-spacing:0.6px;font-weight:700}
+#aniproxy-mark p.sub{margin:6px 0 0;font-size:0.92rem;color:#c9bfbf;opacity:0.9}
+
+/* small footer-like hint */
+footer{position:fixed;bottom:8px;left:calc(22vw + 12px);right:12px;text-align:center;color:rgba(255,255,255,0.06);font-size:12px}
+
+/* utility hover styles kept simple for JS elements */
+.hover-focus1{transition:.15s ease-in-out;pointer-events:auto}
+.hover-focus1:hover:not(.selectedTab){background-color:rgba(255,255,255,0.02) !important}
+.hover-focus2{transition:.15s ease-in-out;pointer-events:auto}
+.hover-focus2:hover:not(.selectedTab){background-color:rgba(255,255,255,0.02) !important}
+
+/* scrollbars (subtle red) */
+#tab-list::-webkit-scrollbar, .sidebar-container::-webkit-scrollbar{width:8px}
+#tab-list::-webkit-scrollbar-thumb, .sidebar-container::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--accent),#7a0505);border-radius:10px}
+
+/* responsiveness: keep nav visible but make center smaller on narrow widths */
+@media(max-width:1200px){
+  .sidebar-container{width:24vw}
+  #tab-view{left:24vw;padding:28px}
+  #center-image-wrap{width:min(62vmin,560px);height:min(62vmin,560px)}
+}
+@media(max-width:980px){
+  .sidebar-container{width:28vw}
+  #tab-view{left:28vw}
+  #center-image-wrap{width:min(56vmin,480px);height:min(56vmin,480px)}
+}
+@media(max-width:760px){
+  /* keep layout usable but still hide very small screens via overlay above */
+  .sidebar-container{width:32vw}
+  #tab-view{left:32vw}
+  #center-image-wrap{width:min(48vmin,420px);height:min(48vmin,420px)}
+}
